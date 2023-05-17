@@ -1,0 +1,6 @@
+.idea
+
+# temp directories
+tmp/
+log/
+
