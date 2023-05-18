@@ -1,0 +1,9 @@
+require: rubocop-rails
+
+AllCops:
+  Exclude:
+    - 'config/**/*.rb'
+    - 'db/**/*.rb'
+    - 'bin/**/*'
+    - 'Gemfile'
+    - 'config.ru'

@@ -6,5 +6,6 @@ FactoryBot.define do
     value_cents { Faker::Number.between(from: 0, to: 100000) }
     external_contract_id { SecureRandom.uuid }
     association :contract_owner
+    association :supplier
   end
 end

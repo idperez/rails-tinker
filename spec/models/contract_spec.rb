@@ -25,5 +25,6 @@ RSpec.describe Contract, type: :model do
 
   describe "associations" do
     it { should belong_to(:contract_owner) }
+    it { should belong_to(:supplier) }
   end
 end
