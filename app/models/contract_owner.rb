@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ContractOwner < ApplicationRecord
+  acts_as_paranoid
+
   # Validations
   validates :first_name, presence: true
   validates :last_name, presence: true

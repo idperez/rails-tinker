@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Contract < ApplicationRecord
+  acts_as_paranoid
+
   # Validations
   validates :external_contract_id, presence: true, uniqueness: true
   validates :name, presence: true

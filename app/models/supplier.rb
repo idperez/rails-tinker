@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Supplier < ApplicationRecord
+  acts_as_paranoid
+
   # Validations
   validates :name, presence: true, uniqueness: true
   validates :identifier, presence: true, uniqueness: true

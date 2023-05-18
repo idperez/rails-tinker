@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_18_192949) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_18_214055) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,6 +20,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_18_192949) do
     t.string "email", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["email"], name: "index_contract_owners_on_email", unique: true
   end
 
@@ -33,6 +34,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_18_192949) do
     t.datetime "updated_at", null: false
     t.bigint "contract_owner_id"
     t.bigint "supplier_id"
+    t.datetime "deleted_at"
     t.index ["contract_owner_id"], name: "index_contracts_on_contract_owner_id"
     t.index ["external_contract_id"], name: "index_contracts_on_external_contract_id"
     t.index ["supplier_id"], name: "index_contracts_on_supplier_id"
@@ -43,6 +45,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_18_192949) do
     t.string "identifier", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["identifier"], name: "index_suppliers_on_identifier"
   end
 

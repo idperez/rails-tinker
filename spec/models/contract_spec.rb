@@ -29,4 +29,20 @@ RSpec.describe Contract, type: :model do
     it { should belong_to(:contract_owner) }
     it { should belong_to(:supplier) }
   end
+
+  describe 'soft deletion' do
+    let(:contract) { FactoryBot.create(:contract) }
+
+    it 'soft deletes the contract' do
+      contract.destroy
+      expect(Contract.find_by(id: contract.id)).to be_nil
+      expect(Contract.with_deleted.find(contract.id)).to eq(contract)
+    end
+
+    it 'restores a soft deleted contract' do
+      contract.destroy
+      Contract.with_deleted.find(contract.id).recover
+      expect(Contract.find_by(id: contract.id)).to eq(contract)
+    end
+  end
 end

@@ -19,4 +19,20 @@ RSpec.describe ContractOwner, type: :model do
       expect(owner).to be_invalid
     end
   end
+
+  describe 'soft deletion' do
+    let(:contract_owner) { FactoryBot.create(:contract_owner) }
+
+    it 'soft deletes the contract_owner' do
+      contract_owner.destroy
+      expect(ContractOwner.find_by(id: contract_owner.id)).to be_nil
+      expect(ContractOwner.with_deleted.find(contract_owner.id)).to eq(contract_owner)
+    end
+
+    it 'restores a soft deleted contract_owner' do
+      contract_owner.destroy
+      ContractOwner.with_deleted.find(contract_owner.id).recover
+      expect(ContractOwner.find_by(id: contract_owner.id)).to eq(contract_owner)
+    end
+  end
 end

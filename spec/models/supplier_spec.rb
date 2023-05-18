@@ -43,4 +43,20 @@ RSpec.describe Supplier, type: :model do
       expect(supplier.identifier).to eql('asupplier')
     end
   end
+
+  describe 'soft deletion' do
+    let(:supplier) { FactoryBot.create(:supplier) }
+
+    it 'soft deletes the contract' do
+      supplier.destroy
+      expect(Supplier.find_by(id: supplier.id)).to be_nil
+      expect(Supplier.with_deleted.find(supplier.id)).to eq(supplier)
+    end
+
+    it 'restores a soft deleted contract' do
+      supplier.destroy
+      Supplier.with_deleted.find(supplier.id).recover
+      expect(Supplier.find_by(id: supplier.id)).to eq(supplier)
+    end
+  end
 end
