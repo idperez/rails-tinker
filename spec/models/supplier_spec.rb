@@ -3,7 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe Supplier, type: :model do
-  subject { FactoryBot.build(:supplier) }
+  subject { FactoryBot.create(:supplier) }
+
+  it { is_expected.to be_versioned }
 
   describe 'validations' do
     it { should validate_presence_of(:name) }

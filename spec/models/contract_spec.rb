@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe Contract, type: :model do
+  it { is_expected.to be_versioned }
+
   describe 'validations' do
     it { should validate_presence_of(:external_contract_id) }
     it { should validate_presence_of(:name) }

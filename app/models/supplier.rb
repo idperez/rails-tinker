@@ -2,6 +2,7 @@
 
 class Supplier < ApplicationRecord
   acts_as_paranoid
+  has_paper_trail
 
   # Validations
   validates :name, presence: true, uniqueness: true

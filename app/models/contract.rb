@@ -2,6 +2,7 @@
 
 class Contract < ApplicationRecord
   acts_as_paranoid
+  has_paper_trail
 
   # Validations
   validates :external_contract_id, presence: true, uniqueness: true

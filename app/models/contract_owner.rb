@@ -2,6 +2,7 @@
 
 class ContractOwner < ApplicationRecord
   acts_as_paranoid
+  has_paper_trail
 
   # Validations
   validates :first_name, presence: true
