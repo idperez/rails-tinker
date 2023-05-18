@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :contract_owner do
     first_name { Faker::Name.first_name }

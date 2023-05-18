@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class Supplier < ApplicationRecord
   # Validations
   validates :name, presence: true, uniqueness: true
   validates :identifier, presence: true, uniqueness: true
 
   # Associations
-  has_many :contracts
+  has_many :contracts, dependent: :nullify
 
   before_validation :set_identifier
 
