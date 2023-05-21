@@ -12,6 +12,8 @@
   </head>
 
   <body class="bg-purple-50 h-full w-full">
+    <%= render partial: "layouts/notifications" %>
+
     <%= render partial: "layouts/nav" %>
 
     <main class="container mx-auto mt-28 px-5">
@@ -19,5 +21,7 @@
 
       <%= yield %>
     </main>
+
+    <%= turbo_frame_tag "import_frame" %>
   </body>
 </html>

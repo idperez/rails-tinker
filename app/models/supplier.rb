@@ -13,7 +13,7 @@ class Supplier < ApplicationRecord
 
   before_validation :set_identifier
 
-  def identifier_from_name(name)
+  def self.identifier_from_name(name)
     return if name.blank?
 
     name.downcase.gsub(/[[:space:]]/, '')
@@ -22,6 +22,6 @@ class Supplier < ApplicationRecord
   private
 
   def set_identifier
-    self.identifier = identifier_from_name(name)
+    self.identifier = Supplier.identifier_from_name(name)
   end
 end

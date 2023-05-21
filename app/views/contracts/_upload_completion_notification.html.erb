@@ -1,0 +1,40 @@
+<div id="upload-completion">
+  <div class="flex w-full flex-col items-center space-y-4 sm:items-end" id="notification-1">
+    <div class="pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+      <div class="p-4">
+        <div class="flex items-start justify-between">
+          <div class="flex flex-col gap-2">
+            <p class="text-sm font-medium text-gray-900">Your contract import is completed!</p>
+            <p class="text-sm text-gray-700">Contracts created: <%= contract_collection.valid_contracts.count %></p>
+            <% if contract_collection.invalid_contracts.count.positive? %>
+              <p class="text-sm text-red-700">Invalid contracts: <%= contract_collection.invalid_contracts.count %></p>
+              <div class="flex flex-col gap-2">
+                <% contract_collection.invalid_contracts.each do |invalid_contract| %>
+                  <div class="flex flex-col text-left">
+                    <p class="text-xs text-gray-700">On row: <%= invalid_contract.row_number %></p>
+                    <p class="text-xs text-gray-700"><%= invalid_contract.message %></p>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+          <div class="ml-4 flex flex-shrink-0">
+            <%=
+              button_tag "",
+                 type: 'button',
+                 data: {
+                   controller: "notifications",
+                   action: "notifications#close",
+                   notification_id: "upload-completion"
+                 } do %>
+              <span class="sr-only">Close</span>
+              <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
+              </svg>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

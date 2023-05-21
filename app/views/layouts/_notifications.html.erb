@@ -1,0 +1,4 @@
+<div aria-live="assertive" class="pointer-events-none inset-0 fixed z-10 px-4 py-2 sm:items-start sm:p-2">
+  <%= turbo_stream_from "notifications-content" %>
+  <turbo-frame class="flex flex-col gap-2" id="notifications-content" ></turbo-frame>
+</div>

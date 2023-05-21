@@ -1,30 +1,30 @@
-<div class="table table-auto w-full card-container">
-  <div class="table-header-group">
-    <div class="table-row bg-white text-gray-800">
-      <div class="table-cell text-lg p-4 pl-8">Contracts</div>
-      <div class="table-cell"></div>
-      <div class="table-cell"></div>
-      <div class="table-cell"></div>
-    </div>
-  </div>
-  <div class="table-header-group">
-    <div class="table-row bg-gray-50 text-gray-800 text-sm">
-      <div class="table-cell border-t border-gray-300 p-4 pl-8">Contract Owner</div>
-      <div class="table-cell border-t border-gray-300 p-4 pl-8">Name</div>
-      <div class="table-cell border-t border-gray-300 p-4 pl-8">Start Date</div>
-      <div class="table-cell border-t border-gray-300 p-4 pl-8">End Date</div>
-      <div class="table-cell border-t border-gray-300 p-4 pl-8">Contract Value</div>
-    </div>
-  </div>
-  <div class="table-row-group">
-    <% @contracts.each do |contract| %>
-      <div id=<%= dom_id(contract) %> class="table-row text-gray-600 text-sm">
-        <div class="table-cell border-t border-gray-300 p-4 pl-8"><%= "#{contract.contract_owner.first_name} #{contract.contract_owner.last_name}" %></div>
-        <div class="table-cell border-t border-gray-300 p-4 pl-8"><%= contract.name %></div>
-        <div class="table-cell border-t border-gray-300 p-4 pl-8"><%= contract.start_date %></div>
-        <div class="table-cell border-t border-gray-300 p-4 pl-8"><%= contract.end_date %></div>
-        <div class="table-cell border-t border-gray-300 p-4 pl-8"><%= contract.value.format %></div>
-      </div>
+<div class="card-container mb-24">
+  <div class="flex flex-row justify-between items-center px-8 py-4">
+    <p class="text-lg">Contracts</p>
+    <%=
+      link_to import_contracts_path,
+              class: 'inline-flex items-center gap-x-1.5 rounded-md bg-purple-500 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-purple-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600',
+              data: { turbo_frame: "import_frame" } do %>
+      <svg width="12" height="16" viewBox="0 0 12 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6.9375 11.5H5.0625C4.73438 11.5 4.5 11.2656 4.5 10.9375V7H2.4375C2.01562 7 1.80469 6.50781 2.10938 6.20312L5.67188 2.64062C5.83594 2.47656 6.14062 2.47656 6.30469 2.64062L9.86719 6.20312C10.1719 6.50781 9.96094 7 9.53906 7H7.5V10.9375C7.5 11.2656 7.24219 11.5 6.9375 11.5ZM12 11.3125V13.9375C12 14.2656 11.7422 14.5 11.4375 14.5H0.5625C0.234375 14.5 0 14.2656 0 13.9375V11.3125C0 11.0078 0.234375 10.75 0.5625 10.75H3.75V10.9375C3.75 11.6641 4.33594 12.25 5.0625 12.25H6.9375C7.64062 12.25 8.25 11.6641 8.25 10.9375V10.75H11.4375C11.7422 10.75 12 11.0078 12 11.3125ZM9.09375 13.375C9.09375 13.1172 8.88281 12.9062 8.625 12.9062C8.36719 12.9062 8.15625 13.1172 8.15625 13.375C8.15625 13.6328 8.36719 13.8438 8.625 13.8438C8.88281 13.8438 9.09375 13.6328 9.09375 13.375ZM10.5938 13.375C10.5938 13.1172 10.3828 12.9062 10.125 12.9062C9.86719 12.9062 9.65625 13.1172 9.65625 13.375C9.65625 13.6328 9.86719 13.8438 10.125 13.8438C10.3828 13.8438 10.5938 13.6328 10.5938 13.375Z" fill="white"/>
+      </svg>
+      Import Contracts
     <% end %>
+  </div>
+  <div class="table table-auto w-full">
+    <div class="table-header-group">
+      <div class="table-row bg-gray-50 text-gray-800 text-sm">
+        <div class="table-cell border-t border-gray-300 p-4 pl-8">Contract Owner</div>
+        <div class="table-cell border-t border-gray-300 p-4 pl-8">Supplier</div>
+        <div class="table-cell border-t border-gray-300 p-4 pl-8">Contract Name</div>
+        <div class="table-cell border-t border-gray-300 p-4 pl-8">Start Date</div>
+        <div class="table-cell border-t border-gray-300 p-4 pl-8">End Date</div>
+        <div class="table-cell border-t border-gray-300 p-4 pl-8">Contract Value</div>
+      </div>
+    </div>
+    <%= turbo_stream_from "contracts" %>
+    <turbo-frame class="table-row-group" id="contracts">
+      <%= render @contracts.includes(:supplier, :contract_owner) %>
+    </turbo-frame>
   </div>
 </div>

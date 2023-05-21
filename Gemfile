@@ -39,3 +39,8 @@ group :test do
   gem "selenium-webdriver", "~> 4.9.0"
   gem "shoulda-matchers", "~> 5.3"
 end
+
+gem "sidekiq", "~> 7.1"
+gem 'light-service'
+gem 'csv'
+gem 'net-http'
