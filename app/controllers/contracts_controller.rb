@@ -5,6 +5,18 @@ class ContractsController < ApplicationController
     @contracts = Contract
   end
 
+  def supplier
+    if params[:id].present?
+      @supplier = Supplier.includes(contracts: :contract_owner).find_by(id: params[:id])
+
+      if @supplier.nil?
+        redirect_to contracts_path, alert: "Supplier not found with id #{params[:id]}"
+      end
+    else
+      redirect_to contracts_path, alert: "Must have a valid Supplier"
+    end
+  end
+
   def import
     respond_to do |format|
       format.turbo_stream
@@ -18,7 +30,7 @@ class ContractsController < ApplicationController
       action: :append,
       target: "notifications-content",
       partial: "contracts/notification",
-      locals: { message: "Upload in progress", id: "upload-started" }
+      locals: { message: "Your CSV upload is in progress", id: "upload-started" }
     )
 
     csv_upload = params[:csv]
@@ -29,7 +41,7 @@ class ContractsController < ApplicationController
       content_type: csv_upload.content_type
     )
 
-    CreateContractsViaCsvJob.perform_async(blob.id)
+    UploadContractsViaCsvJob.perform_async(blob.id)
 
     respond_to do |format|
       format.html

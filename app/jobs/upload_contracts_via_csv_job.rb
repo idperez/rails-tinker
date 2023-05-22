@@ -1,10 +1,10 @@
-class CreateContractsViaCsvJob
+class UploadContractsViaCsvJob
   include Sidekiq::Job
 
-  sidekiq_options queue: 'process_csv'
+  sidekiq_options queue: 'process_csv', retry: 1
 
   def perform(blob_id)
-    service_result = Organizers::CreateContractsViaCsv.call({
+    service_result = Organizers::UploadContractsViaCsv.call({
        blob_id: blob_id
     })
 

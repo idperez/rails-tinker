@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   get 'contracts/import', to: 'contracts#import', as: 'import_contracts'
   post 'contracts/process_csv', to: 'contracts#process_csv', as: 'process_csv'
+  get '/contracts/supplier', to: 'contracts#supplier'
 
   resources :contracts do
     get :update_frame, on: :collection

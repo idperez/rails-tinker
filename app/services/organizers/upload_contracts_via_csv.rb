@@ -1,5 +1,5 @@
 module Organizers
-  class CreateContractsViaCsv
+  class UploadContractsViaCsv
     extend LightService::Organizer
 
     def self.call(ctx)
@@ -10,8 +10,8 @@ module Organizers
       [
         Actions::ProcessCsv,
         Actions::GenerateContractCollection,
-        Actions::CreateContracts,
-        Actions::TriggerNotification
+        Actions::CreateOrUpdateContracts,
+        Actions::NotifyUploadCompletion
       ]
     end
   end

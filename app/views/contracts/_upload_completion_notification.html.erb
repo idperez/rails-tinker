@@ -6,6 +6,9 @@
           <div class="flex flex-col gap-2">
             <p class="text-sm font-medium text-gray-900">Your contract import is completed!</p>
             <p class="text-sm text-gray-700">Contracts created: <%= contract_collection.valid_contracts.count %></p>
+            <% if contract_collection.duplicate_contracts.count.positive? %>
+              <p class="text-sm text-gray-700">Contracts updated: <%= contract_collection.duplicate_contracts.count %></p>
+            <% end %>
             <% if contract_collection.invalid_contracts.count.positive? %>
               <p class="text-sm text-red-700">Invalid contracts: <%= contract_collection.invalid_contracts.count %></p>
               <div class="flex flex-col gap-2">

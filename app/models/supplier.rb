@@ -19,6 +19,13 @@ class Supplier < ApplicationRecord
     name.downcase.gsub(/[[:space:]]/, '')
   end
 
+  def average_contract_value
+    sum = contracts.pluck(:value_cents).reduce(0, :+)
+    average_value = sum / contracts.count
+
+    Money.from_cents(average_value)
+  end
+
   private
 
   def set_identifier

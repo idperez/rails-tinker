@@ -1,7 +1,7 @@
 module Contracts
   module Csv
     class Collection
-      attr_accessor :valid_contracts, :invalid_contracts
+      attr_accessor :valid_contracts, :invalid_contracts, :duplicate_contracts
 
       CSV_ROWS = [
         'Contract Owner',
@@ -15,11 +15,19 @@ module Contracts
 
       def initialize
         @valid_contracts = []
+        @duplicate_contracts = []
         @invalid_contracts = []
       end
 
       def add_valid_contract(row)
-        valid_contracts.push(ValidRow.new(row))
+        valid_row = ValidRow.new(row)
+
+        if valid_row.duplicate_contract
+          duplicate_contracts.push(valid_row)
+        else
+          valid_contracts.push(valid_row)
+        end
+
       end
 
       def add_invalid_contract(row_number, error_message)
@@ -39,7 +47,8 @@ module Contracts
         :end_date,
         :contract_value,
         :supplier_identifier,
-        :supplier_name
+        :supplier_name,
+        :duplicate_contract
 
       def initialize(row)
         @contract_owner_email = row["Contract Owner"]
@@ -50,6 +59,7 @@ module Contracts
         @contract_value = Monetize.parse(row["Contract Value"])
         @supplier_name = row["Supplier"]
         @supplier_identifier = Supplier.identifier_from_name(row["Supplier"])
+        @duplicate_contract = Contract.find_by(external_contract_id: row["External Contract ID"]).present?
       end
     end
   end

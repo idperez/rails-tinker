@@ -1,5 +1,5 @@
 module Actions
-  class TriggerNotification
+  class NotifyUploadCompletion
     extend ::LightService::Action
 
     expects :contract_collection

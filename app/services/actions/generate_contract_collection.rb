@@ -23,7 +23,6 @@ module Actions
         input_errors.push("Contract Value must be greater than 0") if Monetize.parse(row["Contract Value"]).cents.abs.zero?
         input_errors.push("Start Date must be a date format") if (DateTime.strptime(row["Start Date"], '%m/%d/%Y') rescue nil).blank?
         input_errors.push("End Date must be a date format") if (DateTime.strptime(row["End Date"], '%m/%d/%Y') rescue nil).blank?
-        input_errors.push("Contract already exists with external contract id") if Contract.find_by(external_contract_id: row["External Contract ID"]).present?
 
         if input_errors.blank? && DateTime.strptime(row["Start Date"], '%m/%d/%Y') >= DateTime.strptime(row["End Date"], '%m/%d/%Y')
           input_errors.push("Start Date must be before End Date")
