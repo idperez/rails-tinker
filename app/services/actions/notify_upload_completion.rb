@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Actions
   class NotifyUploadCompletion
     extend ::LightService::Action
@@ -6,10 +8,10 @@ module Actions
 
     executed do |context|
       Turbo::StreamsChannel.broadcast_append_to(
-        "notifications-content",
+        'notifications-content',
         action: :append,
-        target: "notifications-content",
-        partial: "contracts/upload_completion_notification",
+        target: 'notifications-content',
+        partial: 'contracts/upload_completion_notification',
         locals: { contract_collection: context.contract_collection }
       )
     end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Actions
   class CreateOrUpdateContracts
     extend ::LightService::Action
@@ -23,7 +25,7 @@ module Actions
             supplier: supplier
           )
 
-          duplicate_contract.broadcast_replace_to "contracts"
+          duplicate_contract.broadcast_replace_to 'contracts'
         else
           new_contract = Contract.new(
             external_contract_id: contract.external_contract_id,
@@ -37,7 +39,7 @@ module Actions
 
           new_contract.save!
 
-          new_contract.broadcast_append_to "contracts"
+          new_contract.broadcast_append_to 'contracts'
         end
       end
     end

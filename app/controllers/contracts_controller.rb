@@ -9,11 +9,9 @@ class ContractsController < ApplicationController
     if params[:id].present?
       @supplier = Supplier.includes(contracts: :contract_owner).find_by(id: params[:id])
 
-      if @supplier.nil?
-        redirect_to contracts_path, alert: "Supplier not found with id #{params[:id]}"
-      end
+      redirect_to contracts_path, alert: "Supplier not found with id #{params[:id]}" if @supplier.nil?
     else
-      redirect_to contracts_path, alert: "Must have a valid Supplier"
+      redirect_to contracts_path, alert: 'Must have a valid Supplier'
     end
   end
 
@@ -26,11 +24,11 @@ class ContractsController < ApplicationController
 
   def process_csv
     Turbo::StreamsChannel.broadcast_append_to(
-      "notifications-content",
+      'notifications-content',
       action: :append,
-      target: "notifications-content",
-      partial: "contracts/notification",
-      locals: { message: "Your CSV upload is in progress", id: "upload-started" }
+      target: 'notifications-content',
+      partial: 'contracts/notification',
+      locals: { message: 'Your CSV upload is in progress', id: 'upload-started' }
     )
 
     csv_upload = params[:csv]
