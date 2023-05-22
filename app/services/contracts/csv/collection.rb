@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Contracts
   module Csv
     class Collection

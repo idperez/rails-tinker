@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Actions
   class NotifyUploadCompletion
     extend ::LightService::Action

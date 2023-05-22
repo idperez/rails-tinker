@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Contract < ApplicationRecord
   acts_as_paranoid
   has_paper_trail

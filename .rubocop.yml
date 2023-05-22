@@ -41,3 +41,7 @@ Metrics/AbcSize:
 Layout/LineLength:
   Exclude:
     - 'app/**/*.rb'
+
+Style/FrozenStringLiteralComment:
+  Exclude:
+    - 'app/**/*.rb'

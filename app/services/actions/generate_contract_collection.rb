@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Actions
   class GenerateContractCollection
     extend ::LightService::Action
