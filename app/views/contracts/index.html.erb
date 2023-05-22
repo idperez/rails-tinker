@@ -11,20 +11,26 @@
       Import Contracts
     <% end %>
   </div>
-  <div class="table table-auto w-full">
-    <div class="table-header-group">
-      <div class="table-row bg-gray-50 text-gray-800 text-sm">
-        <div class="table-cell border-t border-gray-300 p-4 pl-8">Contract Owner</div>
-        <div class="table-cell border-t border-gray-300 p-4 pl-8">Supplier</div>
-        <div class="table-cell border-t border-gray-300 p-4 pl-8">Contract Name</div>
-        <div class="table-cell border-t border-gray-300 p-4 pl-8">Start Date</div>
-        <div class="table-cell border-t border-gray-300 p-4 pl-8">End Date</div>
-        <div class="table-cell border-t border-gray-300 p-4 pl-8">Contract Value</div>
+  <div class="flow-root">
+    <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+        <div class="table table-auto w-full">
+          <div class="table-header-group">
+            <div class="table-row bg-gray-50 text-gray-800 text-sm">
+              <div class="table-cell border-t border-gray-300 p-4 pl-8">Contract Owner</div>
+              <div class="table-cell border-t border-gray-300 p-4 pl-8">Supplier</div>
+              <div class="table-cell border-t border-gray-300 p-4 pl-8">Contract Name</div>
+              <div class="table-cell border-t border-gray-300 p-4 pl-8">Start Date</div>
+              <div class="table-cell border-t border-gray-300 p-4 pl-8">End Date</div>
+              <div class="table-cell border-t border-gray-300 p-4 pl-8">Contract Value</div>
+            </div>
+          </div>
+          <%= turbo_stream_from "contracts" %>
+          <turbo-frame class="table-row-group" id="contracts">
+            <%= render @contracts.includes(:supplier, :contract_owner) %>
+          </turbo-frame>
+        </div>
       </div>
     </div>
-    <%= turbo_stream_from "contracts" %>
-    <turbo-frame class="table-row-group" id="contracts">
-      <%= render @contracts.includes(:supplier, :contract_owner) %>
-    </turbo-frame>
   </div>
 </div>

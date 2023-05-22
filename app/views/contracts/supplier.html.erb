@@ -19,31 +19,37 @@
     <div class="flex flex-row justify-between items-center px-8 py-4">
       <p class="text-lg"><%= @supplier.name %> Contracts</p>
       <div class="flex flex-col text-right">
-        <p class="text-lg">AVERAGE CONTRACT VALUE</p>
-        <p class="text-lg"><%= @supplier.average_contract_value.format %></p>
+        <p class="text-md text-black">AVERAGE CONTRACT VALUE</p>
+        <p class="text-lg text-black font-semibold"><%= @supplier.average_contract_value.format %></p>
       </div>
     </div>
-    <div class="table table-auto w-full">
-      <div class="table-header-group">
-        <div class="table-row bg-gray-50 text-gray-800 text-sm">
-          <div class="table-cell border-t border-gray-300 p-4 pl-8">Contract Owner</div>
-          <div class="table-cell border-t border-gray-300 p-4 pl-8">Contract Name</div>
-          <div class="table-cell border-t border-gray-300 p-4 pl-8">Start Date</div>
-          <div class="table-cell border-t border-gray-300 p-4 pl-8">End Date</div>
-          <div class="table-cell border-t border-gray-300 p-4 pl-8">Contract Value</div>
+    <div class="flow-root">
+      <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+          <div class="table table-auto w-full">
+            <div class="table-header-group">
+              <div class="table-row bg-gray-50 text-gray-800 text-sm">
+                <div class="table-cell border-t border-gray-300 p-4 pl-8">Contract Owner</div>
+                <div class="table-cell border-t border-gray-300 p-4 pl-8">Contract Name</div>
+                <div class="table-cell border-t border-gray-300 p-4 pl-8">Start Date</div>
+                <div class="table-cell border-t border-gray-300 p-4 pl-8">End Date</div>
+                <div class="table-cell border-t border-gray-300 p-4 pl-8">Contract Value</div>
+              </div>
+            </div>
+            <div class="table-row-group">
+              <% @supplier.contracts.each do |contract| %>
+                <div id=<%= "#{contract.id}" %> class="table-row text-gray-600 text-sm">
+                <div class="table-cell whitespace-nowrap border-t border-gray-300 p-4 pl-8"><%= "#{contract.contract_owner.first_name} #{contract.contract_owner.last_name}" %></div>
+                <div class="table-cell whitespace-nowrap border-t border-gray-300 p-4 pl-8"><%= contract.name %></div>
+                <div class="table-cell whitespace-nowrap border-t border-gray-300 p-4 pl-8"><%= contract.start_date %></div>
+                <div class="table-cell whitespace-nowrap border-t border-gray-300 p-4 pl-8"><%= contract.end_date %></div>
+                <div class="table-cell whitespace-nowrap border-t border-gray-300 p-4 pl-8"><%= contract.value.format %></div>
+                </div>
+              <% end %>
+              </div>
         </div>
       </div>
-      <div class="table-row-group">
-        <% @supplier.contracts.each do |contract| %>
-          <div id=<%= "#{contract.id}" %> class="table-row text-gray-600 text-sm">
-          <div class="table-cell border-t border-gray-300 p-4 pl-8"><%= "#{contract.contract_owner.first_name} #{contract.contract_owner.last_name}" %></div>
-          <div class="table-cell border-t border-gray-300 p-4 pl-8"><%= contract.name %></div>
-          <div class="table-cell border-t border-gray-300 p-4 pl-8"><%= contract.start_date %></div>
-          <div class="table-cell border-t border-gray-300 p-4 pl-8"><%= contract.end_date %></div>
-          <div class="table-cell border-t border-gray-300 p-4 pl-8"><%= contract.value.format %></div>
-          </div>
-        <% end %>
-        </div>
+    </div>
   </div>
 </div>
 

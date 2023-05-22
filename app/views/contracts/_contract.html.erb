@@ -1,6 +1,6 @@
 <div id=<%= "#{dom_id contract}" %> class="table-row text-gray-600 text-sm">
-  <div class="table-cell border-t border-gray-300 p-4 pl-8"><%= "#{contract.contract_owner.first_name} #{contract.contract_owner.last_name}" %></div>
-  <div class="table-cell border-t border-gray-300 p-4 pl-8">
+  <div class="table-cell whitespace-nowrap border-t border-gray-300 p-4 pl-8"><%= "#{contract.contract_owner.first_name} #{contract.contract_owner.last_name}" %></div>
+  <div class="table-cell whitespace-nowrap border-t border-gray-300 p-4 pl-8">
     <%=
       button_tag "",
                  type: 'button',
@@ -13,8 +13,8 @@
       <%= contract.supplier.name %>
     <% end %>
   </div>
-  <div class="table-cell border-t border-gray-300 p-4 pl-8"><%= contract.name %></div>
-  <div class="table-cell border-t border-gray-300 p-4 pl-8"><%= contract.start_date %></div>
-  <div class="table-cell border-t border-gray-300 p-4 pl-8"><%= contract.end_date %></div>
-  <div class="table-cell border-t border-gray-300 p-4 pl-8"><%= contract.value.format %></div>
+  <div class="table-cell whitespace-nowrap border-t border-gray-300 p-4 pl-8"><%= contract.name %></div>
+  <div class="table-cell whitespace-nowrap border-t border-gray-300 p-4 pl-8"><%= contract.start_date %></div>
+  <div class="table-cell whitespace-nowrap border-t border-gray-300 p-4 pl-8"><%= contract.end_date %></div>
+  <div class="table-cell whitespace-nowrap border-t border-gray-300 p-4 pl-8"><%= contract.value.format %></div>
 </div>
