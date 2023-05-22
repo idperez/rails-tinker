@@ -14,7 +14,7 @@ A Supplier [model](app/models/supplier.rb) has been created
 
 ### Card 102 - import a CSV of contracts via a modal
 
-[See CSV upload demo]("https://1drv.ms/v/s!AhkDeTRiWXeCjS1AGDmHGGmbO5Ui?e=9vLjli")
+See CSV upload demo (Hosted on OneDrive): https://1drv.ms/v/s!AhkDeTRiWXeCjS1AGDmHGGmbO5Ui?e=9vLjli
 
 - Modal rendered via turbo-frame tag
 - CSV stored using ActiveStorage
@@ -24,7 +24,7 @@ A Supplier [model](app/models/supplier.rb) has been created
 
 ### Card 103/104 - link from contracts table to a supplier view with average contract value
 
-[See supplier page demo]("https://1drv.ms/v/s!AhkDeTRiWXeCjS1AGDmHGGmbO5Ui?e=9vLjli")
+See supplier page demo (Hosted on OneDrive): https://1drv.ms/v/s!AhkDeTRiWXeCjS1AGDmHGGmbO5Ui?e=9vLjli
 
 - Link to `/contracts/supplier?id={supplier.id}`
 - Average contract value derived by the `average_contract_value` method on [Supplier](app/models/supplier.rb) model
