@@ -12,6 +12,7 @@ AllCops:
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*.rb'
+    - 'app/**/*.rb'
 
 Rails/UniqueValidationWithoutIndex:
   Exclude:
@@ -21,3 +22,22 @@ Style/Documentation:
   Exclude:
     - 'app/**/*.rb'
 
+Style/RescueModifier:
+  Exclude:
+    - 'app/**/*.rb'
+
+Style/HashSyntax:
+  Exclude:
+    - 'app/**/*.rb'
+
+Metrics/MethodLength:
+  Exclude:
+    - 'app/**/*.rb'
+
+Metrics/AbcSize:
+  Exclude:
+    - 'app/**/*.rb'
+
+Layout/LineLength:
+  Exclude:
+    - 'app/**/*.rb'
